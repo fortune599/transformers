@@ -1,10 +1,10 @@
 import math
 
 def make_translate( x, y, z ):
-    return [[1, 0, 0, x], [0, 1, 0, y], [0, 0, 1, z], [0, 0, 0, 1]]
+    return [[1, 0, 0, x],[0, 1, 0, y],[0, 0, 1, z],[0, 0, 0, 1]]
 
 def make_scale( x, y, z ):
-    return [[x, 0, 0, 0], [0, y, 0, 0], [0, 0, z, 0], [0, 0, 0, 1]]
+    return [[x, 0, 0, 0],[0, y, 0, 0],[0, 0, z, 0],[0, 0, 0, 1]]
 
 def make_rotX( theta ):    
     pass
@@ -13,7 +13,7 @@ def make_rotY( theta ):
     pass
 
 def make_rotZ( theta ):
-    pass
+    return [[math.cos(theta), -math.sin(theta), 0, 0],[math.sin(theta), math.cos(theta), 0, 0],[0, 0, 1, 0],[0, 0, 0, 1]]
 
 def print_matrix( matrix ):
     s = ''
