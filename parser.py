@@ -66,7 +66,9 @@ def parse_file( fname, points, transform, screen, color ):
             matrix_mult(rot, transform)
             ima += 1
         elif (lines[ima].find('apply') > -1):
+            print points
             matrix_mult(transform, points)
+            print points
         elif (lines[ima].find('display') > -1):
             draw_lines(points, screen, color)
             display(screen)
