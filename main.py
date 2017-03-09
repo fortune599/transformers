@@ -8,4 +8,6 @@ color = [ 0, 255, 0 ]
 edges = []
 transform = new_matrix()
 
+ident(transform)
+
 parse_file( 'script', edges, transform, screen, color )

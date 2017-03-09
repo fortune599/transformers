@@ -7,13 +7,16 @@ def make_scale( x, y, z ):
     return [[x, 0, 0, 0],[0, y, 0, 0],[0, 0, z, 0],[0, 0, 0, 1]]
 
 def make_rotX( theta ):    
-    pass
+    a = math.radians(theta)
+    return [[1, 0, 0, 0],[0, math.cos(a), -math.sin(a), 0],[0, math.sin(a), math.cos(a), 0],[0, 0, 0, 1]]
 
 def make_rotY( theta ):
-    pass
+    a = math.radians(theta)
+    return [[math.cos(a), 0, math.sin(a), 0],[0, 1, 0, 0],[-math.sin(a), 0, math.cos(a), 0],[0, 0, 0, 1]]
 
 def make_rotZ( theta ):
-    return [[math.cos(theta), -math.sin(theta), 0, 0],[math.sin(theta), math.cos(theta), 0, 0],[0, 0, 1, 0],[0, 0, 0, 1]]
+    a = math.radians(theta)
+    return [[math.cos(a), -math.sin(a), 0, 0],[math.sin(a), math.cos(a), 0, 0],[0, 0, 1, 0],[0, 0, 0, 1]]
 
 def print_matrix( matrix ):
     s = ''
