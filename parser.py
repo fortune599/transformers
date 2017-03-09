@@ -32,4 +32,48 @@ The file follows the following format:
 See the file script for an example of the file format
 """
 def parse_file( fname, points, transform, screen, color ):
-    pass
+    fo = open(fname, "r")
+    lines = fo.read()
+    lines = lines.split("\n")
+    ima = 0
+    while (ima < len(lines)):
+        if (lines[ima].find('line') > -1):
+            args = lines[ima+1]
+            args = args.split(" ")
+            add_edge(points, int(args[0]), int(args[1]), int(args[2]), int(args[3]), int(args[4]), int(args[5]))
+            ima += 1
+        elif (lines[ima].find('ident') > -1):
+            ident(transform)
+        elif (lines[ima].find('scale') > -1):
+            args = lines[ima+1]
+            args = args.split(" ")
+            matrix_mult(make_scale(int(args[0]), int(args[1]), int(args[2])), transform)
+            ima += 1
+        elif (lines[ima].find('move') > -1):
+            args = lines[ima+1]
+            args = args.split(" ")
+            matrix_mult(make_translate(int(args[0]), int(args[1]), int(args[2])), transform)
+            ima += 1
+        elif (lines[ima].find('rotate') > -1):
+            args = lines[ima+1]
+            args = args.split(" ")
+            if (args[0].find('x') > -1):
+                rot = make_rotX(int(args[1]))
+            elif (args[0].find('y') > -1):
+                rot = make_rotY(int(args[1]))
+            elif (args[0].find('z') > -1):
+                rot = make_rotZ(int(args[1]))
+            matrix_mult(rot, transform)
+            ima += 1
+        elif (lines[ima].find('apply') > -1):
+            matrix_mult(transform, points)
+        elif (lines[ima].find('display') > -1):
+            draw_lines(points, screen, color)
+            display(screen)
+        elif (lines[ima].find('save') > -1):
+            draw_lines(points, screen, color)
+            args = lines[ima+1]
+            save_extension(screen, args)
+            ima += 1
+        ima += 1
+    return
